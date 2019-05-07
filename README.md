@@ -1,68 +1,72 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Pycom Frontend Take-home Exercise
 
-## Available Scripts
+Hi there! Here is a coding exercise to help us assess your technical skills.
+Please plan to spend no more than 4 hours on this. We understand we may not be
+the only company asking for an exercise from you and want to be respectful of
+your time. We recommend you focus on the core
+requirements first, then work on any additional features if you have the time.
 
-In the project directory, you can run:
+By 4 hours in, please feel free to stop working and explain what refactors /
+code organization / enhancements you would have made with more time in the
+SOLUTION.md file.
 
-### `npm start`
+If you have any questions at any point, please reach us on email.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Submission
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+Please fork this repository and commit all your changes to it.
+When you're done, send us the email with your Github repository URL.
 
-### `npm test`
+## Overview
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+We’ve built a simple Autocomplete/Typeahead component in vanilla ES2015 that
+lets you type in a query and shows a list of matching results in a dropdown.
 
-### `npm run build`
+To see this component in action, let's set up the repo:
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Run `npm install`
+2. Run `npm start` (runs `webpack-dev-server`)
+3. Open `http://localhost:8080` on your browser.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+Type "new" in the input, and you'll get a list of matching US states that start
+with "new".
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Task
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Currently, the component can only query against a static data array. Your task is to:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Enhance the component so that it also accepts an HTTP endpoint as data source.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+    For example, if you wire up the component to
+    `https://api.github.com/search/users?q={query}&per_page={numOfResults}`,
+    and if you type `foo` in the input, the component dropdown should show
+    Github users with logins that start with `foo`. When you select a user from
+    the results, `item` in the `onSelect(item)` callback should be the selected
+    Github user's id.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+    (The enhanced initialised component only needs to work with either a data array or a
+    HTTP source, not both at the same time.)
 
-## Learn More
+2. Implement keyboard shortcuts to navigate the results dropdown using up/down
+   arrow keys and to select a result using the Enter key.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+3. When item in dropdown is selected by mouse click or Enter key, show the selected item in a
+search field (same as Google is doing it).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Uncomment the relevant sections in `index.js` and `index.html` to implement a
+demo that looks like this:
 
-### Code Splitting
+![Demo example screenshot](demo-example.png)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
 
-### Analyzing the Bundle Size
+## Requirements
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- The component should be reusable. It should be possible to have multiple
+  instances of the component on the same page.
+- The "States" example that uses a data array should be enhanced with your code and continue to work.
+- Your component should work correctly in Chrome, don’t worry about
+  cross-browser compatibility.
+- You don't need to preserve any of the existing code; feel free to modify them
+  as you wish.
+- New APIs and your notes should be documented in `SOLUTION.md`.

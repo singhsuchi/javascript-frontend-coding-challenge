@@ -16,7 +16,7 @@ handleChange = (event) => {
     this.setState({ searchfield: event.target.value })
     console.log(this.state.searchfield);
 	var url = new URL("https://api.github.com/search/users"),
-    params = {q:this.state.searchfield, per_page:50}
+    params = {q:this.state.searchfield, per_page:100}
 	Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
 
     fetch(url)
